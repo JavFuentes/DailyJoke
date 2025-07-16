@@ -10,20 +10,54 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import dev.javfuentes.dailyjoke.data.repository.JokeRepositoryImpl
+import dev.javfuentes.dailyjoke.network.NetworkModule
 import dev.javfuentes.dailyjoke.ui.components.ErrorMessage
 import dev.javfuentes.dailyjoke.ui.components.JokeCard
 import dev.javfuentes.dailyjoke.ui.components.LoadingIndicator
 import dev.javfuentes.dailyjoke.viewmodel.JokeUiEvent
+import dev.javfuentes.dailyjoke.viewmodel.JokeUiState
 import dev.javfuentes.dailyjoke.viewmodel.JokeViewModel
+import dev.javfuentes.dailyjoke.viewmodel.JokeViewModelFactory
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun JokeScreen(
+    modifier: Modifier = Modifier
+) {
+    val repository = JokeRepositoryImpl(NetworkModule.jokeApiService)
+    val viewModelFactory = JokeViewModelFactory(repository)
+    
+    val viewModel: JokeViewModel = viewModel { viewModelFactory.create(JokeViewModel::class.java) }
+    
+    JokeScreen(
+        modifier = modifier,
+        viewModel = viewModel
+    )
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun JokeScreen(
     modifier: Modifier = Modifier,
-    viewModel: JokeViewModel = viewModel()
+    viewModel: JokeViewModel
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    
+    JokeScreen(
+        modifier = modifier,
+        uiState = uiState,
+        onEvent = viewModel::handleEvent
+    )
+}
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun JokeScreen(
+    modifier: Modifier = Modifier,
+    uiState: JokeUiState,
+    onEvent: (JokeUiEvent) -> Unit
+) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -53,8 +87,8 @@ fun JokeScreen(
                     ErrorMessage(
                         message = uiState.errorMessage!!,
                         onRetry = {
-                            viewModel.handleEvent(JokeUiEvent.ClearError)
-                            viewModel.handleEvent(JokeUiEvent.LoadJoke)
+                            onEvent(JokeUiEvent.ClearError)
+                            onEvent(JokeUiEvent.LoadJoke)
                         }
                     )
                 }
@@ -71,7 +105,7 @@ fun JokeScreen(
         ) {
             // Refresh button
             Button(
-                onClick = { viewModel.handleEvent(JokeUiEvent.RefreshJoke) },
+                onClick = { onEvent(JokeUiEvent.RefreshJoke) },
                 enabled = !uiState.isLoading && !uiState.isRefreshing,
                 modifier = Modifier.weight(1f)
             ) {
