@@ -2,7 +2,6 @@ package dev.javfuentes.dailyjoke.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.javfuentes.dailyjoke.data.JokeResponse
 import dev.javfuentes.dailyjoke.network.RetrofitInstance
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
