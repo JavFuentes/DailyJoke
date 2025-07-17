@@ -27,6 +27,8 @@ class JokeViewModel(
             is JokeUiEvent.RefreshJoke -> refreshJoke()
             is JokeUiEvent.LoadJokeByCategory -> loadJokeByCategory(event.category)
             is JokeUiEvent.ClearError -> clearError()
+            is JokeUiEvent.SaveFavoriteJoke -> saveFavoriteJoke()
+            is JokeUiEvent.RemoveFromFavorites -> removeFromFavorites(event.joke)
         }
     }
 
@@ -93,5 +95,31 @@ class JokeViewModel(
 
     private fun clearError() {
         _uiState.value = _uiState.value.copy(errorMessage = null)
+    }
+
+    private fun saveFavoriteJoke() {
+        val currentState = _uiState.value
+        val currentJoke = currentState.joke
+        
+        // Only save if there's a current joke
+        if (currentJoke != null) {
+            val currentFavorites = currentState.favoriteJokes
+            
+            // Only add if not already in favorites (prevent duplicates)
+            if (!currentFavorites.contains(currentJoke)) {
+                _uiState.value = currentState.copy(
+                    favoriteJokes = currentFavorites + currentJoke
+                )
+            }
+        }
+    }
+
+    private fun removeFromFavorites(joke: dev.javfuentes.dailyjoke.data.Joke) {
+        val currentState = _uiState.value
+        val updatedFavorites = currentState.favoriteJokes.filter { it.id != joke.id }
+        
+        _uiState.value = currentState.copy(
+            favoriteJokes = updatedFavorites
+        )
     }
 }

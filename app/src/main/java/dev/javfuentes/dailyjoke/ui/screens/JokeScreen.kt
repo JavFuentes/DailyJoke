@@ -2,6 +2,9 @@ package dev.javfuentes.dailyjoke.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -47,7 +50,8 @@ fun JokeScreen(
     JokeScreen(
         modifier = modifier,
         uiState = uiState,
-        onEvent = viewModel::handleEvent
+        onEvent = viewModel::handleEvent,
+        onNavigateToFavorites = {}
     )
 }
 
@@ -56,7 +60,8 @@ fun JokeScreen(
 fun JokeScreen(
     modifier: Modifier = Modifier,
     uiState: JokeUiState,
-    onEvent: (JokeUiEvent) -> Unit
+    onEvent: (JokeUiEvent) -> Unit,
+    onNavigateToFavorites: () -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -99,15 +104,61 @@ fun JokeScreen(
         }
 
         // Action buttons
-        Row(
+        Column(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            // Refresh button
+            // Top row: Save to favorites and View favorites
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                // Save to favorites button
+                Button(
+                    onClick = { onEvent(JokeUiEvent.SaveFavoriteJoke) },
+                    enabled = !uiState.isLoading && !uiState.isRefreshing && uiState.joke != null,
+                    modifier = Modifier.weight(1f),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.secondary
+                    )
+                ) {
+                    val isCurrentJokeFavorite = uiState.joke?.let { currentJoke ->
+                        uiState.favoriteJokes.contains(currentJoke)
+                    } ?: false
+                    
+                    Icon(
+                        imageVector = if (isCurrentJokeFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(if (isCurrentJokeFavorite) "Saved" else "Save")
+                }
+
+                // View favorites button
+                OutlinedButton(
+                    onClick = onNavigateToFavorites,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.List,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("Favorites")
+                    if (uiState.favoriteJokes.isNotEmpty()) {
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text("(${uiState.favoriteJokes.size})")
+                    }
+                }
+            }
+            
+            // Bottom row: New joke button
             Button(
                 onClick = { onEvent(JokeUiEvent.RefreshJoke) },
                 enabled = !uiState.isLoading && !uiState.isRefreshing,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Icon(
                     imageVector = Icons.Default.Refresh,

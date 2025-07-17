@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import dev.javfuentes.dailyjoke.ui.screens.JokeScreen
+import dev.javfuentes.dailyjoke.ui.DailyJokeApp
 import dev.javfuentes.dailyjoke.ui.theme.DailyJokeTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             DailyJokeTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    JokeScreen(
+                    DailyJokeApp(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }

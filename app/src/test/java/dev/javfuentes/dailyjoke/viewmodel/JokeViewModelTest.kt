@@ -136,6 +136,66 @@ class JokeViewModelTest {
         }
     }
 
+    @Test
+    fun `handleEvent SaveFavoriteJoke should add current joke to favorites list`() = runTest {
+        // Given
+        val mockJoke = createMockJoke()
+        coEvery { mockRepository.getRandomJoke() } returns flowOf(
+            ApiResult.Success(mockJoke)
+        )
+        
+        // Load a joke first
+        viewModel.handleEvent(JokeUiEvent.LoadJoke)
+        
+        // When
+        viewModel.handleEvent(JokeUiEvent.SaveFavoriteJoke)
+        
+        // Then
+        viewModel.uiState.test {
+            val stateWithFavorite = awaitItem()
+            assertThat(stateWithFavorite.favoriteJokes).hasSize(1)
+            assertThat(stateWithFavorite.favoriteJokes).contains(mockJoke)
+        }
+    }
+
+    @Test
+    fun `handleEvent SaveFavoriteJoke should not add duplicate jokes to favorites`() = runTest {
+        // Given
+        val mockJoke = createMockJoke()
+        coEvery { mockRepository.getRandomJoke() } returns flowOf(
+            ApiResult.Success(mockJoke)
+        )
+        
+        // Load a joke first
+        viewModel.handleEvent(JokeUiEvent.LoadJoke)
+        
+        // When - save the same joke twice
+        viewModel.handleEvent(JokeUiEvent.SaveFavoriteJoke)
+        viewModel.handleEvent(JokeUiEvent.SaveFavoriteJoke)
+        
+        // Then
+        viewModel.uiState.test {
+            val stateWithFavorites = awaitItem()
+            assertThat(stateWithFavorites.favoriteJokes).hasSize(1)
+            assertThat(stateWithFavorites.favoriteJokes).contains(mockJoke)
+        }
+    }
+
+    @Test
+    fun `handleEvent SaveFavoriteJoke should do nothing when no current joke exists`() = runTest {
+        // Given - no joke loaded (initial state)
+        
+        // When
+        viewModel.handleEvent(JokeUiEvent.SaveFavoriteJoke)
+        
+        // Then
+        viewModel.uiState.test {
+            val state = awaitItem()
+            assertThat(state.favoriteJokes).isEmpty()
+            assertThat(state.joke).isNull()
+        }
+    }
+
     private fun createMockJoke() = Joke(
         id = 1,
         category = "Programming",
