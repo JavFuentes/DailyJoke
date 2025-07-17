@@ -30,10 +30,10 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(
-                                top = innerPadding.calculateTopPadding() + 16.dp,
+                                top = innerPadding.calculateTopPadding() + 72.dp,
                                 start = 16.dp,
                                 end = 16.dp,
-                                bottom = innerPadding.calculateBottomPadding() + 16.dp
+                                bottom = innerPadding.calculateBottomPadding() + 72.dp
                             ),
                         elevation = CardDefaults.cardElevation(
                             defaultElevation = 12.dp,

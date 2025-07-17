@@ -6,64 +6,64 @@
 [![Material 3](https://img.shields.io/badge/Design-Material%203-orange.svg)](https://m3.material.io)
 [![API Level](https://img.shields.io/badge/API-26%2B-yellow.svg)](https://developer.android.com/tools/releases/platforms)
 
-> Una aplicación Android moderna que te trae una sonrisa cada día con chistes aleatorios. Construida con las últimas tecnologías de Android y siguiendo las mejores prácticas de desarrollo.
+> A modern Android application that brings you a smile every day with random jokes. Built with the latest Android technologies following development best practices.
 
-## ✨ Características
+## ✨ Features
 
-🎯 **Chistes Aleatorios** - Obtén chistes frescos y divertidos al instante  
-💖 **Sistema de Favoritos** - Guarda tus chistes preferidos para verlos después  
-🎨 **Diseño Material 3** - Interfaz moderna con colores dinámicos  
-💾 **Persistencia Local** - Tus favoritos se guardan automáticamente  
-🌟 **Edge-to-Edge** - Experiencia visual inmersiva  
-⚡ **Performance Optimizada** - Smooth animations y respuesta rápida  
-🧪 **Testing Completo** - Desarrollado con TDD (Test-Driven Development)
+🎯 **Random Jokes** - Get fresh and funny jokes instantly  
+💖 **Favorites System** - Save your preferred jokes to view them later  
+🎨 **Material 3 Design** - Modern interface with dynamic colors  
+💾 **Local Persistence** - Your favorites are saved automatically  
+🌟 **Edge-to-Edge** - Immersive visual experience  
+⚡ **Optimized Performance** - Smooth animations and fast response  
+🧪 **Complete Testing** - Developed with TDD (Test-Driven Development)
 
 ## 🚀 Screenshots
 
-> *Screenshots de la aplicación se añadirán próximamente*
+> *Application screenshots will be added soon*
 
-## 🛠️ Tecnologías
+## 🛠️ Technologies
 
-Este proyecto está construido usando tecnologías de vanguardia de Android:
+This project is built using cutting-edge Android technologies:
 
-- **[Kotlin](https://kotlinlang.org)** - 100% Kotlin, lenguaje moderno y conciso
-- **[Jetpack Compose](https://developer.android.com/jetpack/compose)** - Toolkit declarativo para UI nativa
-- **[Material 3](https://m3.material.io)** - Sistema de diseño más reciente de Google
-- **[Retrofit](https://square.github.io/retrofit/)** - Cliente HTTP type-safe para Android
-- **[Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)** - Programación asíncrona elegante
-- **[StateFlow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-state-flow/)** - Gestión de estado reactiva
-- **[ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)** - Manejo del estado de UI
-- **[SharedPreferences](https://developer.android.com/reference/android/content/SharedPreferences)** - Persistencia local ligera
+- **[Kotlin](https://kotlinlang.org)** - 100% Kotlin, modern and concise language
+- **[Jetpack Compose](https://developer.android.com/jetpack/compose)** - Declarative toolkit for native UI
+- **[Material 3](https://m3.material.io)** - Google's latest design system
+- **[Retrofit](https://square.github.io/retrofit/)** - Type-safe HTTP client for Android
+- **[Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)** - Elegant asynchronous programming
+- **[StateFlow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-state-flow/)** - Reactive state management
+- **[ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)** - UI state handling
+- **[SharedPreferences](https://developer.android.com/reference/android/content/SharedPreferences)** - Lightweight local persistence
 
 ### 🧪 Testing
 
-- **[JUnit](https://junit.org/)** - Framework de testing unitario
-- **[Mockk](https://mockk.io/)** - Mocking library para Kotlin
-- **[Turbine](https://github.com/cashapp/turbine)** - Testing para Flow
-- **[Truth](https://truth.dev/)** - Aserciones fluidas para tests
+- **[JUnit](https://junit.org/)** - Unit testing framework
+- **[Mockk](https://mockk.io/)** - Mocking library for Kotlin
+- **[Turbine](https://github.com/cashapp/turbine)** - Testing for Flow
+- **[Truth](https://truth.dev/)** - Fluent assertions for tests
 
-## 🏗️ Arquitectura
+## 🏗️ Architecture
 
-El proyecto sigue el patrón **MVVM (Model-View-ViewModel)** con **Clean Architecture**:
+The project follows the **MVVM (Model-View-ViewModel)** pattern with **Clean Architecture**:
 
 ```
 📁 app/src/main/java/dev/javfuentes/dailyjoke/
 ├── 📁 data/
-│   ├── 📁 datasource/          # Fuentes de datos (API, Local)
-│   ├── 📁 model/               # Modelos de datos y API
-│   └── 📁 repository/          # Implementación del patrón Repository
-├── 📁 di/                      # Inyección de dependencias manual
-├── 📁 network/                 # Configuración de red y APIs
+│   ├── 📁 datasource/          # Data sources (API, Local)
+│   ├── 📁 model/               # Data models and API
+│   └── 📁 repository/          # Repository pattern implementation
+├── 📁 di/                      # Manual dependency injection
+├── 📁 network/                 # Network configuration and APIs
 ├── 📁 ui/
-│   ├── 📁 components/          # Componentes reutilizables de UI
-│   ├── 📁 navigation/          # Navegación entre pantallas
-│   ├── 📁 screens/             # Pantallas principales
-│   └── 📁 theme/               # Tema Material 3
-├── 📁 utils/                   # Utilidades y constantes
-└── 📁 viewmodel/               # ViewModels y estado de UI
+│   ├── 📁 components/          # Reusable UI components
+│   ├── 📁 navigation/          # Screen navigation
+│   ├── 📁 screens/             # Main screens
+│   └── 📁 theme/               # Material 3 theme
+├── 📁 utils/                   # Utilities and constants
+└── 📁 viewmodel/               # ViewModels and UI state
 ```
 
-### 🔄 Flujo de Datos
+### 🔄 Data Flow
 
 ```
 UI (Compose) ↔ ViewModel ↔ Repository ↔ DataSource
@@ -71,157 +71,130 @@ UI (Compose) ↔ ViewModel ↔ Repository ↔ DataSource
                 StateFlow/UiState
 ```
 
-## 📱 Características Técnicas
+## 📱 Technical Features
 
-- **Single Activity Architecture** - Una sola Activity con navegación por Composables
-- **Reactive Programming** - StateFlow para gestión de estado reactiva
-- **Error Handling** - Manejo robusto de errores de red y API
-- **Offline Support** - Los favoritos funcionan sin conexión
-- **Material Design 3** - Colores dinámicos y theming moderno
-- **Edge-to-Edge Layout** - Soporte completo para pantallas modernas
+- **Single Activity Architecture** - Single Activity with Composable navigation
+- **Reactive Programming** - StateFlow for reactive state management
+- **Error Handling** - Robust network and API error handling
+- **Offline Support** - Favorites work without connection
+- **Material Design 3** - Dynamic colors and modern theming
+- **Edge-to-Edge Layout** - Full support for modern screens
 
 ## 🎨 API
 
-La aplicación consume la [JokeAPI](https://jokeapi.dev/) gratuita:
+The application consumes the free [JokeAPI](https://jokeapi.dev/):
 
 - **Endpoint**: `https://v2.jokeapi.dev/joke/Programming`
-- **Formato**: JSON
-- **Tipos**: Two-part jokes (setup + punchline)
-- **Filtros**: Safe mode habilitado
-- **Idioma**: Inglés
+- **Format**: JSON
+- **Types**: Two-part jokes (setup + punchline)
+- **Filters**: Safe mode enabled
+- **Language**: English
 
-## 🚀 Instalación
+## 🚀 Installation
 
-### Prerrequisitos
+### Prerequisites
 
-- Android Studio Hedgehog | 2023.1.1 o superior
-- JDK 11 o superior
+- Android Studio Hedgehog | 2023.1.1 or higher
+- JDK 11 or higher
 - Android SDK API 26+
-- Dispositivo/Emulador con Android 8.0+ (API 26)
+- Device/Emulator with Android 8.0+ (API 26)
 
-### Pasos
+### Steps
 
-1. **Clona el repositorio**
+1. **Clone the repository**
    ```bash
    git clone https://github.com/yourusername/DailyJoke.git
    cd DailyJoke
    ```
 
-2. **Abre en Android Studio**
-   - File → Open → Selecciona la carpeta del proyecto
+2. **Open in Android Studio**
+   - File → Open → Select the project folder
 
-3. **Sincroniza el proyecto**
-   - Android Studio sincronizará automáticamente las dependencias
+3. **Sync the project**
+   - Android Studio will automatically sync dependencies
 
-4. **Ejecuta la aplicación**
-   - Conecta un dispositivo o inicia un emulador
-   - Haz clic en Run ▶️
+4. **Run the application**
+   - Connect a device or start an emulator
+   - Click Run ▶️
 
 ### 🏗️ Build Commands
 
 ```bash
-# Limpiar proyecto
+# Clean project
 ./gradlew clean
 
 # Build debug
 ./gradlew assembleDebug
 
-# Ejecutar tests
+# Run tests
 ./gradlew test
 
-# Ejecutar tests instrumentados
+# Run instrumented tests
 ./gradlew connectedAndroidTest
 
 # Lint check
 ./gradlew lint
 ```
 
-## 📖 Uso
+## 📖 Usage
 
-1. **Pantalla Principal**
-   - Visualiza chistes aleatorios
-   - Toca "New Joke" para obtener un chiste nuevo
-   - Usa el botón ❤️ para guardar favoritos
+1. **Main Screen**
+   - View random jokes
+   - Tap "New Joke" to get a new joke
+   - Use the ❤️ button to save favorites
 
-2. **Pantalla de Favoritos**
-   - Accede desde el botón "Favorites"
-   - Ve todos tus chistes guardados
-   - Elimina favoritos con el botón "Remove"
+2. **Favorites Screen**
+   - Access from "Favorites" button
+   - See all your saved jokes
+   - Remove favorites with "Remove" button
 
-3. **Navegación**
-   - Navegación simple entre pantallas
-   - Botón de regreso en favoritos
+3. **Navigation**
+   - Simple navigation between screens
+   - Back button in favorites
 
 ## 🧪 Testing
 
-El proyecto incluye tests completos siguiendo el enfoque TDD:
+The project includes comprehensive tests following TDD approach:
 
 ```bash
-# Tests unitarios
+# Unit tests
 ./gradlew test
 
-# Tests de UI (requiere dispositivo)
+# UI tests (requires device)
 ./gradlew connectedAndroidTest
 
 # Coverage report
 ./gradlew jacocoTestReport
 ```
 
-### 📊 Cobertura de Tests
+### 📊 Test Coverage
 
 - ✅ ViewModels (Business Logic)
 - ✅ Repository Pattern
 - ✅ Data Sources
-- ✅ UI Components (en desarrollo)
+- ✅ UI Components (in development)
 
-## 🛣️ Roadmap
+## 📄 License
 
-- [ ] 🌐 Soporte para múltiples idiomas
-- [ ] 🎭 Más categorías de chistes
-- [ ] 📤 Compartir chistes en redes sociales
-- [ ] 🎨 Temas personalizables
-- [ ] 📊 Estadísticas de uso
-- [ ] 🔄 Widget para pantalla de inicio
-- [ ] 🌙 Modo oscuro mejorado
+This project is under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## 🤝 Contribuir
-
-¡Las contribuciones son bienvenidas! Por favor:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/amazing-feature`)
-3. Commit tus cambios (`git commit -m 'Add amazing feature'`)
-4. Push a la rama (`git push origin feature/amazing-feature`)
-5. Abre un Pull Request
-
-### 📋 Guidelines
-
-- Sigue las convenciones de código Kotlin
-- Añade tests para nuevas funcionalidades
-- Actualiza la documentación cuando sea necesario
-- Mantén los commits atómicos y descriptivos
-
-## 📄 Licencia
-
-Este proyecto está bajo la licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
-
-## 👨‍💻 Autor
+## 👨‍💻 Author
 
 **Javier Fuentes**
 - GitHub: [@javfuentes](https://github.com/javfuentes)
 - Email: dev.javfuentes@gmail.com
 
-## 🙏 Agradecimientos
+## 🙏 Acknowledgments
 
-- [JokeAPI](https://jokeapi.dev/) por proporcionar la API gratuita de chistes
-- [Android Jetpack](https://developer.android.com/jetpack) por las librerías modernas
-- [Material Design](https://material.io/) por el sistema de diseño
-- Comunidad de Android por las mejores prácticas
+- [JokeAPI](https://jokeapi.dev/) for providing the free jokes API
+- [Android Jetpack](https://developer.android.com/jetpack) for modern libraries
+- [Material Design](https://material.io/) for the design system
+- Android community for best practices
 
 ---
 
 <div align="center">
 
-**¿Te gustó el proyecto? ¡Dale una ⭐!**
+**Did you like the project? Give it a ⭐!**
 
 </div>
