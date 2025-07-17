@@ -3,6 +3,7 @@ package dev.javfuentes.dailyjoke.data.repository
 import dev.javfuentes.dailyjoke.data.Joke
 import dev.javfuentes.dailyjoke.data.JokeResponse
 import dev.javfuentes.dailyjoke.data.JokeType
+import dev.javfuentes.dailyjoke.data.datasource.FavoritesDataSource
 import dev.javfuentes.dailyjoke.data.model.ApiError
 import dev.javfuentes.dailyjoke.data.model.ApiException
 import dev.javfuentes.dailyjoke.data.model.ApiResult
@@ -15,7 +16,8 @@ import retrofit2.Response
 import java.io.IOException
 
 class JokeRepositoryImpl(
-    private val apiService: JokeApiService
+    private val apiService: JokeApiService,
+    private val favoritesDataSource: FavoritesDataSource
 ) : JokeRepository {
 
     override suspend fun getRandomJoke(): Flow<ApiResult<Joke>> = flow {
@@ -106,5 +108,21 @@ class JokeRepositoryImpl(
             )
             else -> throw IllegalArgumentException("Unknown joke type: ${response.type}")
         }
+    }
+
+    override suspend fun saveFavoriteJoke(joke: Joke) {
+        favoritesDataSource.saveFavoriteJoke(joke)
+    }
+
+    override suspend fun removeFavoriteJoke(jokeId: Int) {
+        favoritesDataSource.removeFavoriteJoke(jokeId)
+    }
+
+    override suspend fun getFavoriteJokes(): List<Joke> {
+        return favoritesDataSource.getFavoriteJokes()
+    }
+
+    override suspend fun isFavorite(jokeId: Int): Boolean {
+        return favoritesDataSource.isFavorite(jokeId)
     }
 }

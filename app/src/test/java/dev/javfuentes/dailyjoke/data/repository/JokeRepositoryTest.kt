@@ -3,6 +3,7 @@ package dev.javfuentes.dailyjoke.data.repository
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import dev.javfuentes.dailyjoke.data.JokeResponse
+import dev.javfuentes.dailyjoke.data.datasource.FavoritesDataSource
 import dev.javfuentes.dailyjoke.data.model.*
 import dev.javfuentes.dailyjoke.network.JokeApiService
 import io.mockk.*
@@ -14,11 +15,12 @@ import java.io.IOException
 class JokeRepositoryTest {
 
     private val mockApiService = mockk<JokeApiService>()
+    private val mockFavoritesDataSource = mockk<FavoritesDataSource>()
     private lateinit var repository: JokeRepository
 
     @Before
     fun setup() {
-        repository = JokeRepositoryImpl(mockApiService)
+        repository = JokeRepositoryImpl(mockApiService, mockFavoritesDataSource)
     }
 
     @After

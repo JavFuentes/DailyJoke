@@ -8,4 +8,10 @@ interface JokeRepository {
     suspend fun getRandomJoke(): Flow<ApiResult<Joke>>
     suspend fun getJokeByCategory(category: String): Flow<ApiResult<Joke>>
     suspend fun getJokeById(id: Int): Flow<ApiResult<Joke>>
+    
+    // Favorites methods
+    suspend fun saveFavoriteJoke(joke: Joke)
+    suspend fun removeFavoriteJoke(jokeId: Int)
+    suspend fun getFavoriteJokes(): List<Joke>
+    suspend fun isFavorite(jokeId: Int): Boolean
 }

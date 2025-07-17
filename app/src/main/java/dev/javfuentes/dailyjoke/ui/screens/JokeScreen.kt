@@ -12,24 +12,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.javfuentes.dailyjoke.data.repository.JokeRepositoryImpl
-import dev.javfuentes.dailyjoke.network.NetworkModule
+import dev.javfuentes.dailyjoke.di.AppModule
 import dev.javfuentes.dailyjoke.ui.components.ErrorMessage
 import dev.javfuentes.dailyjoke.ui.components.JokeCard
 import dev.javfuentes.dailyjoke.ui.components.LoadingIndicator
 import dev.javfuentes.dailyjoke.viewmodel.JokeUiEvent
 import dev.javfuentes.dailyjoke.viewmodel.JokeUiState
 import dev.javfuentes.dailyjoke.viewmodel.JokeViewModel
-import dev.javfuentes.dailyjoke.viewmodel.JokeViewModelFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun JokeScreen(
     modifier: Modifier = Modifier
 ) {
-    val repository = JokeRepositoryImpl(NetworkModule.jokeApiService)
-    val viewModelFactory = JokeViewModelFactory(repository)
+    val context = LocalContext.current
+    val viewModelFactory = AppModule.provideJokeViewModelFactory(context)
     
     val viewModel: JokeViewModel = viewModel { viewModelFactory.create(JokeViewModel::class.java) }
     

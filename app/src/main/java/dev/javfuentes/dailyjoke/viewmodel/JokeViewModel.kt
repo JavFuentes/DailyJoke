@@ -19,6 +19,7 @@ class JokeViewModel(
 
     init {
         handleEvent(JokeUiEvent.LoadJoke)
+        loadFavorites()
     }
 
     fun handleEvent(event: JokeUiEvent) {
@@ -103,23 +104,36 @@ class JokeViewModel(
         
         // Only save if there's a current joke
         if (currentJoke != null) {
-            val currentFavorites = currentState.favoriteJokes
-            
-            // Only add if not already in favorites (prevent duplicates)
-            if (!currentFavorites.contains(currentJoke)) {
-                _uiState.value = currentState.copy(
-                    favoriteJokes = currentFavorites + currentJoke
-                )
+            viewModelScope.launch {
+                try {
+                    repository.saveFavoriteJoke(currentJoke)
+                    loadFavorites() // Reload favorites to update UI
+                } catch (e: Exception) {
+                    // Handle error if needed
+                }
             }
         }
     }
 
     private fun removeFromFavorites(joke: dev.javfuentes.dailyjoke.data.Joke) {
-        val currentState = _uiState.value
-        val updatedFavorites = currentState.favoriteJokes.filter { it.id != joke.id }
-        
-        _uiState.value = currentState.copy(
-            favoriteJokes = updatedFavorites
-        )
+        viewModelScope.launch {
+            try {
+                repository.removeFavoriteJoke(joke.id)
+                loadFavorites() // Reload favorites to update UI
+            } catch (e: Exception) {
+                // Handle error if needed
+            }
+        }
+    }
+
+    private fun loadFavorites() {
+        viewModelScope.launch {
+            try {
+                val favorites = repository.getFavoriteJokes()
+                _uiState.value = _uiState.value.copy(favoriteJokes = favorites)
+            } catch (e: Exception) {
+                // Handle error if needed
+            }
+        }
     }
 }

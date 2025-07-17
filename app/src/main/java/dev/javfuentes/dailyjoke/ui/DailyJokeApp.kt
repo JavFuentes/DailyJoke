@@ -1,25 +1,25 @@
 package dev.javfuentes.dailyjoke.ui
 
+import android.content.Context
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.javfuentes.dailyjoke.data.repository.JokeRepositoryImpl
-import dev.javfuentes.dailyjoke.network.NetworkModule
+import dev.javfuentes.dailyjoke.di.AppModule
 import dev.javfuentes.dailyjoke.ui.navigation.DailyJokeScreen
 import dev.javfuentes.dailyjoke.ui.screens.FavoriteJokesScreen
 import dev.javfuentes.dailyjoke.ui.screens.JokeScreen
 import dev.javfuentes.dailyjoke.viewmodel.JokeUiEvent
 import dev.javfuentes.dailyjoke.viewmodel.JokeViewModel
-import dev.javfuentes.dailyjoke.viewmodel.JokeViewModelFactory
 
 @Composable
 fun DailyJokeApp(
     modifier: Modifier = Modifier
 ) {
     var currentScreen by remember { mutableStateOf(DailyJokeScreen.JOKE) }
+    val context = LocalContext.current
     
-    val repository = JokeRepositoryImpl(NetworkModule.jokeApiService)
-    val viewModelFactory = JokeViewModelFactory(repository)
+    val viewModelFactory = AppModule.provideJokeViewModelFactory(context)
     val viewModel: JokeViewModel = viewModel { viewModelFactory.create(JokeViewModel::class.java) }
     val uiState by viewModel.uiState.collectAsState()
 
