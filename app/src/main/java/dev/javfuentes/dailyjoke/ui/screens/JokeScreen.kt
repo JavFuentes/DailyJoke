@@ -5,7 +5,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -146,10 +145,6 @@ fun JokeScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text("Favorites")
-                    if (uiState.favoriteJokes.isNotEmpty()) {
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text("(${uiState.favoriteJokes.size})")
-                    }
                 }
             }
             
@@ -159,12 +154,6 @@ fun JokeScreen(
                 enabled = !uiState.isLoading && !uiState.isRefreshing,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Icon(
-                    imageVector = Icons.Default.Refresh,
-                    contentDescription = null,
-                    modifier = Modifier.size(18.dp)
-                )
-                Spacer(modifier = Modifier.width(8.dp))
                 Text("New Joke")
             }
         }

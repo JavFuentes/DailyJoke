@@ -10,6 +10,7 @@ import dev.javfuentes.dailyjoke.data.model.ApiResult
 import dev.javfuentes.dailyjoke.data.model.NetworkException
 import dev.javfuentes.dailyjoke.network.JokeApiService
 import dev.javfuentes.dailyjoke.utils.Constants
+import dev.javfuentes.dailyjoke.utils.TextUtils
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
@@ -90,17 +91,17 @@ class JokeRepositoryImpl(
         return when (response.type) {
             "twopart" -> Joke(
                 id = response.id ?: 0,
-                category = response.category ?: "Unknown",
-                setup = response.setup ?: "",
-                punchline = response.delivery ?: "",
+                category = TextUtils.cleanText(response.category ?: "Unknown"),
+                setup = TextUtils.cleanText(response.setup ?: ""),
+                punchline = TextUtils.cleanText(response.delivery ?: ""),
                 type = JokeType.TWOPART,
                 safe = response.safe ?: true,
                 lang = response.lang ?: "en"
             )
             "single" -> Joke(
                 id = response.id ?: 0,
-                category = response.category ?: "Unknown",
-                setup = response.joke ?: "",
+                category = TextUtils.cleanText(response.category ?: "Unknown"),
+                setup = TextUtils.cleanText(response.joke ?: ""),
                 punchline = "", // Single jokes don't have punchlines
                 type = JokeType.SINGLE,
                 safe = response.safe ?: true,
