@@ -12,15 +12,11 @@
 
 🎯 **Random Jokes** - Get fresh and funny jokes instantly  
 💖 **Favorites System** - Save your preferred jokes to view them later  
-🎨 **Material 3 Design** - Modern interface with dynamic colors  
 💾 **Local Persistence** - Your favorites are saved automatically  
-🌟 **Edge-to-Edge** - Immersive visual experience  
-⚡ **Optimized Performance** - Smooth animations and fast response  
-🧪 **Complete Testing** - Developed with TDD (Test-Driven Development)
 
 ## 🚀 Screenshots
 
-> *Application screenshots will be added soon*
+<img width="500" height="500" alt="ss" src="https://github.com/user-attachments/assets/2b4822f4-ca3f-4280-833e-cb8afbeb674d" />
 
 ## 🛠️ Technologies
 
@@ -30,7 +26,6 @@ This project is built using cutting-edge Android technologies:
 - **[Jetpack Compose](https://developer.android.com/jetpack/compose)** - Declarative toolkit for native UI
 - **[Material 3](https://m3.material.io)** - Google's latest design system
 - **[Retrofit](https://square.github.io/retrofit/)** - Type-safe HTTP client for Android
-- **[Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)** - Elegant asynchronous programming
 - **[StateFlow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-state-flow/)** - Reactive state management
 - **[ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)** - UI state handling
 - **[SharedPreferences](https://developer.android.com/reference/android/content/SharedPreferences)** - Lightweight local persistence
@@ -77,7 +72,6 @@ UI (Compose) ↔ ViewModel ↔ Repository ↔ DataSource
 - **Reactive Programming** - StateFlow for reactive state management
 - **Error Handling** - Robust network and API error handling
 - **Offline Support** - Favorites work without connection
-- **Material Design 3** - Dynamic colors and modern theming
 - **Edge-to-Edge Layout** - Full support for modern screens
 
 ## 🎨 API
@@ -176,7 +170,31 @@ The project includes comprehensive tests following TDD approach:
 
 ## 📄 License
 
-This project is under the MIT License. See the [LICENSE](LICENSE) file for more details.
+```
+MIT License
+
+Copyright (c) 2023 Javier Fuentes
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+For more information about the author and his projects, visit http://javierfuentes.dev
+```
 
 ## 👨‍💻 Author
 
@@ -196,5 +214,9 @@ This project is under the MIT License. See the [LICENSE](LICENSE) file for more 
 <div align="center">
 
 **Did you like the project? Give it a ⭐!**
+
+<a href='https://ko-fi.com/I2I2OPHE0' target='_blank'>
+  <img height='36' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' alt='Cómprame un café en ko-fi.com' />
+</a>
 
 </div>
