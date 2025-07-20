@@ -200,14 +200,7 @@ For more information about the author and his projects, visit http://javierfuent
 
 **Javier Fuentes**
 - GitHub: [@javfuentes](https://github.com/javfuentes)
-- Email: dev.javfuentes@gmail.com
-
-## 🙏 Acknowledgments
-
-- [JokeAPI](https://jokeapi.dev/) for providing the free jokes API
-- [Android Jetpack](https://developer.android.com/jetpack) for modern libraries
-- [Material Design](https://material.io/) for the design system
-- Android community for best practices
+- Email: contacto@javierfuentes.dev
 
 ---
 

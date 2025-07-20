@@ -1,6 +1,5 @@
 package dev.javfuentes.dailyjoke.ui
 
-import android.content.Context
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
