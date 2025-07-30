@@ -168,6 +168,20 @@ The project includes comprehensive tests following TDD approach:
 - ✅ Data Sources
 - ✅ UI Components (in development)
 
+## 🔄 CI/CD
+
+Automated CI/CD pipeline with **GitHub Actions**:
+
+- ✅ **Build & Test** - Automatic builds and unit tests on push/PR
+- ✅ **Instrumented Tests** - UI tests on Android emulator
+- ✅ **Code Quality** - Lint checks and static analysis
+- 🎯 **Branches**: `master`, `ci-testing`
+
+```bash
+# Run CI checks locally
+./gradlew clean build test lint
+```
+
 ## 📄 License
 
 ```
